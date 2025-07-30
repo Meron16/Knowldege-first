@@ -1,0 +1,13 @@
+/* public/css/custom-dashboard.css */
+.fi-sidebar {
+    background-color: #1e1e2f !important;  /* Deep dark blue */
+    color: white !important;
+}
+
+.fi-sidebar .fi-sidebar-item {
+    color: white !important;
+}
+
+.fi-topbar {
+    background-color: #111827 !important;
+}
