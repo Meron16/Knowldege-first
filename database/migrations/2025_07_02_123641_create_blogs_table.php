@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('intro');
-            $table->text('description');            
-            $table->string('image')->nullable();            
-            $table->string('type');
-            $table->timestamps();
-        });
+       Schema::create('blogs', function (Blueprint $table) {
+           $table->id();
+           $table->string('headline');
+           $table->text('description');
+           $table->string('image')->nullable(); // store as filename or URL
+           $table->string('video_link')->nullable();
+           $table->longText('details');
+           $table->timestamps();
+});
+
     }
 
     /**

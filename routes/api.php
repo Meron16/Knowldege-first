@@ -1,13 +1,21 @@
 <?php
 
+use App\Http\Controllers\API\BlogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\NewsMediaController;
+use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\NewsletterController;
-
+use App\Http\Controllers\API\InternationalRegistrationController;
+use App\Http\Controllers\API\VolunteerRegistrationController;
 Route::post('/contact', [ContactController::class, 'store']);
 Route::post('/newsletter', [NewsletterController::class, 'store']);
-
+Route::post('/register/volunteer', [VolunteerRegistrationController::class, 'store']);
+Route::post('/international', [InternationalRegistrationController::class, 'store']);
+Route::apiResource('blogs', App\Http\Controllers\Api\BlogController::class);
+Route::apiResource('news-media', App\Http\Controllers\Api\NewsMediaController::class);
+Route::apiResource('events', App\Http\Controllers\Api\EventController::class);
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +27,7 @@ Route::post('/newsletter', [NewsletterController::class, 'store']);
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
