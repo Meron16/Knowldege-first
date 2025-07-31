@@ -23,7 +23,9 @@ class SubscriptionResource extends Resource
     {
         return $form
             ->schema([
-                //
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->required(),
             ]);
     }
 
@@ -31,13 +33,23 @@ class SubscriptionResource extends Resource
     {
         return $table
             ->columns([
-                //
+            Tables\Columns\TextColumn::make('email')->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+    Tables\Actions\ViewAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-eye'),
+
+    Tables\Actions\EditAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-pencil'),
+
+    Tables\Actions\DeleteAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-trash'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

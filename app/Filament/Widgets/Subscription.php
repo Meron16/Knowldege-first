@@ -9,6 +9,11 @@ use Filament\Widgets\ChartWidget;
 class Subscription extends ChartWidget
 {
     protected static ?string $heading = 'Blog Posts per Month';
+public function getColumnSpan(): int|string|array
+{
+    return 12;
+}
+
 
     protected function getData(): array
     {

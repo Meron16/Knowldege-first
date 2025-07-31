@@ -65,7 +65,17 @@ class EventResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+    Tables\Actions\ViewAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-eye'),
+
+    Tables\Actions\EditAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-pencil'),
+
+    Tables\Actions\DeleteAction::make()
+        ->label('') // Hide text label
+        ->icon('heroicon-o-trash'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

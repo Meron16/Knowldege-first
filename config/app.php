@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+App\Providers\FilamentServiceProvider::class;
 
 return [
 

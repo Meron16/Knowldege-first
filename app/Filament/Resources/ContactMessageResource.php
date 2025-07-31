@@ -23,28 +23,79 @@ class ContactMessageResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('First name')
+                ->required(),
+                Forms\Components\TextInput::make('Last name')
+                ->required(),
+                Forms\Components\TextInput::make('Email')
+                ->email()
+                ->required(),
+                Forms\Components\TextInput::make('Phone')
+                ->email()
+                ->required(),
+                Forms\Components\Textarea::make('Message')
+                ->required()
+                ->maxLength(65535)
+                ->columnSpanFull(),
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
+public static function table(Table $table): Table
+{
+    return $table
             ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
+            Tables\Columns\TextColumn::make('first_name')
+                ->label('First Name') // this changes the column HEADER
+                ->extraHeaderAttributes(['class' => 'text-2xl font-extrabold text-primary'])
+                ->searchable(),
+
+
+            Tables\Columns\TextColumn::make('last_name')
+                ->label('Last Name')
+                ->searchable(),
+
+
+            Tables\Columns\TextColumn::make('email')
+                ->label('Email Address')
+                ->searchable()
+                ->color('p')
+                ->weight('medium'),
+
+            Tables\Columns\TextColumn::make('phone')
+                ->label('Phone Number')
+                ->searchable()
+                ->color('info'),
+
+            Tables\Columns\TextColumn::make('message')
+                ->label('Message')
+                ->limit(50)
+                ->searchable()
+                ->wrap()
+                ->color('gray'),
+        ])
+        ->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\ViewAction::make()
+                ->label('')
+                ->icon('heroicon-o-eye'),
+
+            Tables\Actions\EditAction::make()
+                ->label('')
+                ->icon('heroicon-o-pencil'),
+
+            Tables\Actions\DeleteAction::make()
+                ->label('')
+                ->icon('heroicon-o-trash'),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ]);
+}
+
 
     public static function getRelations(): array
     {
@@ -58,7 +109,8 @@ class ContactMessageResource extends Resource
         return [
             'index' => Pages\ListContactMessages::route('/'),
             'create' => Pages\CreateContactMessage::route('/create'),
-            'edit' => Pages\EditContactMessage::route('/{record}/edit'),
+            'edit' => Pages\EditContactMessage::route('/{record}/edit')
+            
         ];
     }
 }

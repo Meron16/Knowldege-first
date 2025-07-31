@@ -10,6 +10,14 @@ use App\Http\Controllers\API\NewsletterController;
 use App\Http\Controllers\API\InternationalRegistrationController;
 use App\Http\Controllers\API\VolunteerRegistrationController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::post('/contact', [ContactController::class, 'store']);
