@@ -11,7 +11,7 @@ return new class extends Migration
      */
 public function up()
 {
-    Schema::create('international_registrations', function (Blueprint $table) {
+    Schema::create('local_registrations', function (Blueprint $table) {
         $table->id();
         $table->string('first_name');
         $table->string('last_name');
@@ -31,6 +31,6 @@ public function up()
      */
     public function down(): void
     {
-        Schema::dropIfExists('international_registrations');
+        Schema::dropIfExists('local_registrations');
     }
 };

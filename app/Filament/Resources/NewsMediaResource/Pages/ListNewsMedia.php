@@ -14,6 +14,7 @@ class ListNewsMedia extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            
         ];
     }
 }

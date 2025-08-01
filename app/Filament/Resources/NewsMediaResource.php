@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class NewsMediaResource extends Resource
 {
+    
+
     protected static ?string $model = NewsMedia::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
@@ -94,6 +96,24 @@ class NewsMediaResource extends Resource
             'index' => Pages\ListNewsMedia::route('/'),
             'create' => Pages\CreateNewsMedia::route('/create'),
             'edit' => Pages\EditNewsMedia::route('/{record}/edit'),
+            'view' => Pages\ViewNewsMedia::route('/{record}'),
+           
+
+
         ];
     }
+    public static function getNavigationLabel(): string
+   {
+        return 'News and Media';
+   }  
+       public static function getNavigationGroup(): ?string
+    {
+    return 'Media Library';
+    }
+    public static function canDelete($record): bool
+{
+    return auth()->user()?->role === 'admin';
+}
+
+
 }

@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BlogResource extends Resource
 {
+    
+
     protected static ?string $model = Blog::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
@@ -94,6 +96,11 @@ class BlogResource extends Resource
             'index' => Pages\ListBlogs::route('/'),
             'create' => Pages\CreateBlog::route('/create'),
             'edit' => Pages\EditBlog::route('/{record}/edit'),
+            
         ];
+    }
+    public static function getNavigationGroup(): ?string
+    {
+    return 'Media Library';
     }
 }
